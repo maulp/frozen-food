@@ -137,7 +137,7 @@ if(isset($_POST['confirm']))
 				</ul>
 			</div>
 			<div class="w3ls_logo_products_left">
-				<h1><a href="index.php">ChakBagkar</a></h1>
+				<h1><a href="index.php">Mr. Food</a></h1>
 			</div>
 		<div class="w3l_search">
 			<form action="search.php" method="post">

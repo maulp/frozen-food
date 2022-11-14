@@ -36,7 +36,7 @@ $timenow = date("j-F-Y-h:i:s A");
 <!DOCTYPE html>
 <html>
 <head>
-<title>ChakBagkar - Masuk</title>
+<title>Mr. Food - Masuk</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -200,8 +200,8 @@ $timenow = date("j-F-Y-h:i:s A");
 					<h3>Hubungi Kami</h3>
 					
 					<ul class="address">
-						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>ChakBagkar, Malang</li>
-						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@email">ChakBagkar@email</a></li>
+						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Mr. Food, Malang</li>
+						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@email">Mr. Food@email</a></li>
 						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>0877 0475 6564</li>
 					</ul>
 				</div>

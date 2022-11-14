@@ -32,7 +32,7 @@ if(isset($_POST["checkout"])){
 <!DOCTYPE html>
 <html>
 <head>
-<title>ChakBagkar - Checkout</title>
+<title>Mr. Food - Checkout</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -115,7 +115,7 @@ if(isset($_POST["checkout"])){
 				</ul>
 			</div>
 			<div class="w3ls_logo_products_left">
-				<h1><a href="index.php">ChakBagkar</a></h1>
+				<h1><a href="index.php">Mr. Food</a></h1>
 			</div>
 		<div class="w3l_search">
 			<form action="search.php" method="post">
