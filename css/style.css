@@ -45,7 +45,7 @@ span.glyphicon.glyphicon-shopping-cart.my-cart-icon.my-cart-icon-affix {
     text-align: center;
 }
 .my-cart-icon-affix i {
-    background: #fe9126 !important;
+    background: #ffffff !important;
 }
 .agile_top_brand_left_grid {
     position: relative;
@@ -85,7 +85,7 @@ input[type="submit"],#PPMiniCart .minicart-submit,.w3ls_vegetables ul li a,input
     color: #fff;
 }
 .w3l_offers p a {
-    color: #fe9126;
+    color: #00ff33;
     text-decoration: none;
 }
 .w3l_search {
@@ -115,7 +115,7 @@ i.fa.fa-phone {
     font-size: 20px;
 }
 button.btn.btn-default.search {
-    background: #fe9126;
+    background: #00ff11;
     padding: 11px 12px 11px;
     float: right;
     outline: none;
@@ -123,7 +123,6 @@ button.btn.btn-default.search {
 }
 button.btn.btn-default.search:hover {
     background:#333;
-	
 }
 .agile-login {
     float: left;
@@ -190,7 +189,7 @@ button.w3view-cart:focus{
 }
 .w3ls_logo_products_left h1 a{
 	font-size: 40px;
-    color: #fe9126;
+    color: #fafafa;
     text-decoration: none;
     text-transform: uppercase;
     display: block;
@@ -242,7 +241,7 @@ button.w3view-cart:focus{
 }
 ul.multi-column-dropdown h6 {
     font-size: 20px;
-    color:#fe9126;
+    color:#ffead4;
     margin: 0 0 0em;
     padding-bottom: 1em;
     border-bottom: 1px solid #E4E4E4;
@@ -282,7 +281,7 @@ ul.multi-column-dropdown h6 {
     width: 100%;
 }
 .navigation-agileits {
-    background: #fe9126;
+    background: #26ff00;
 }
 .navbar-nav > li {
     float: left;

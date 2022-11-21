@@ -100,7 +100,7 @@ if(isset($_POST['adduser']))
 				</ul>
 			</div>
 			<div class="w3ls_logo_products_left">
-				<h1><a href="index.php">Tokopekita</a></h1>
+				<h1><a href="index.php">Mr. Food</a></h1>
 			</div>
 		<div class="w3l_search">
 			<form action="#" method="post">
