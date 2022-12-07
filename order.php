@@ -156,7 +156,7 @@ if(isset($_POST["update"])){
 							</div> 
 							<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 								<ul class="nav navbar-nav">
-									<li class="active"><a href="index.php" class="act">Home</a></li>	
+									<li class="active"><a href="index.php" class="act">Beranda</a></li>	
 									<!-- Mega Menu -->
 									<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Kategori Produk<b class="caret"></b></a>
@@ -195,8 +195,8 @@ if(isset($_POST["update"])){
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1">
-				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Checkout</li>
+				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Beranda</a></li>
+				<li class="active">Bayar</li>
 			</ol>
 		</div>
 	</div>

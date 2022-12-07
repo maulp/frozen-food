@@ -131,7 +131,7 @@ if(isset($_POST['adduser']))
 							</div> 
 							<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 								<ul class="nav navbar-nav">
-									<li class="active"><a href="index.php" class="act">Home</a></li>	
+									<li class="active"><a href="index.php" class="act">Beranda</a></li>	
 									<!-- Mega Menu -->
 									<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Kategori Produk<b class="caret"></b></a>
@@ -168,7 +168,7 @@ if(isset($_POST['adduser']))
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Beranda</a></li>
 				<li class="active">Daftar</li>
 			</ol>
 		</div>
@@ -185,7 +185,7 @@ if(isset($_POST['adduser']))
 					<input type="text" name="telp" placeholder="Nomor Telepon" required maxlength="13">
 					<input type="text" name="alamat" placeholder="Alamat Lengkap" required>
 				
-				<h6>Informasi Login</h6>
+				<h6>Masuk</h6>
 					
 					<input type="email" name="email" placeholder="Email" required="@">
 					<input type="password" name="pass" placeholder="Password" required>
@@ -206,7 +206,7 @@ if(isset($_POST['adduser']))
 					<h3>Hubungi Kami</h3>
 					
 					<ul class="address">
-						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Richard's Lab, DKI Jakarta.</li>
+						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Mr.Food, Malang</li>
 						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@email">info@email</a></li>
 						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+62 8113 2322</li>
 					</ul>

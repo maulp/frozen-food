@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 session_start();
 include 'dbconnect.php';
 
@@ -7,11 +8,11 @@ $s = $_POST['Search'];
 <!DOCTYPE html>
 <html>
 <head>
-<title>ChakBagkar - Pencarian</title>
+<title>Mr.Food - Pencarian</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Tokopekita, Richard's Lab" />
+<meta name="keywords" content="Tokopekita, Mr.Food" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
@@ -90,7 +91,7 @@ $s = $_POST['Search'];
 				</ul>
 			</div>
 			<div class="w3ls_logo_products_left">
-				<h1><a href="index.php">ChakBagkar</a></h1>
+				<h1><a href="index.php">Mr.Food</a></h1>
 			</div>
 		<div class="w3l_search">
 			<form action="search.php" method="post">
@@ -121,7 +122,7 @@ $s = $_POST['Search'];
 							</div> 
 							<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 								<ul class="nav navbar-nav">
-									<li class="active"><a href="index.php" class="act">Home</a></li>	
+									<li class="active"><a href="index.php" class="act">Beranda</a></li>	
 									<!-- Mega Menu -->
 									<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Kategori Produk<b class="caret"></b></a>
@@ -148,7 +149,7 @@ $s = $_POST['Search'];
 										</ul>
 									</li>
 									<li><a href="cart.php">Keranjang Saya</a></li>
-									<li><a href="konfirmasi.php">Daftar Order</a></li>
+									<li><a href="konfirmasi.php">Daftar Pesanan</a></li>
 								</ul>
 							</div>
 							</nav>
@@ -160,7 +161,7 @@ $s = $_POST['Search'];
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Beranda</a></li>
 				<li class="active">Kategori</li>
 			</ol>
 		</div>
@@ -171,7 +172,7 @@ $s = $_POST['Search'];
 		<div class="container">
 			<div class="col-md-4 products-left">
 				<div class="categories">
-					<h2>Categories</h2>
+					<h2>Kategori</h2>
 					<ul class="cate">
 						
 						
@@ -205,7 +206,7 @@ $s = $_POST['Search'];
 						<div class="hover14 column">
 							<div class="agile_top_brand_left_grid">
 								<div class="agile_top_brand_left_grid_pos">
-									<img src="images/offer.png" alt=" " class="img-responsive" />
+									<!-- <img src="images/offer.png" alt=" " class="img-responsive" /> -->
 								</div>
 								<div class="agile_top_brand_left_grid1">
 									<figure>
@@ -248,7 +249,7 @@ $s = $_POST['Search'];
 					<h3>Hubungi Kami</h3>
 					
 					<ul class="address">
-						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Richard's Lab, DKI Jakarta.</li>
+						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Mr.Food, Malang</li>
 						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@email">info@email</a></li>
 						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+62 8113 2322</li>
 					</ul>
@@ -268,7 +269,7 @@ $s = $_POST['Search'];
 		<div class="footer-copy">
 			
 			<div class="container">
-				<p>© 2020 Richard's Lab. All rights reserved</p>
+				<p>© 2020 Mr.Food. All rights reserved</p>
 			</div>
 		</div>
 		

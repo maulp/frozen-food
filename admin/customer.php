@@ -55,7 +55,7 @@
                 <div class="menu-inner">
                     <nav>
                         <ul class="metismenu" id="menu">
-							<li><a href="index.php"><span>Home</span></a></li>
+							<li><a href="index.php"><span>Beranda</span></a></li>
 							<li><a href="../"><span>Kembali ke Toko</span></a></li>
 							<li>
                                 <a href="manageorder.php"><i class="ti-dashboard"></i><span>Kelola Pesanan</span></a>
@@ -72,7 +72,7 @@
 							<li class="active"><a href="customer.php"><span>Kelola Pelanggan</span></a></li>
 							<li><a href="user.php"><span>Kelola Staff</span></a></li>
                             <li>
-                                <a href="../logout.php"><span>Logout</span></a>
+                                <a href="../logout.php"><span>Keluar</span></a>
                                 
                             </li>
                             
@@ -179,7 +179,7 @@
         <!-- footer area start-->
         <footer>
             <div class="footer-area">
-                <p>By Richard's Lab</p>
+                <p>Mr.Food</p>
             </div>
         </footer>
         <!-- footer area end-->

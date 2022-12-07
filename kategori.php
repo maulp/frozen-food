@@ -121,7 +121,7 @@ $idk = $_GET['idkategori'];
 							</div> 
 							<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 								<ul class="nav navbar-nav">
-									<li class="active"><a href="index.php" class="act">Home</a></li>	
+									<li class="active"><a href="index.php" class="act">Beranda</a></li>	
 									<!-- Mega Menu -->
 									<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Kategori Produk<b class="caret"></b></a>
@@ -160,7 +160,7 @@ $idk = $_GET['idkategori'];
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Beranda</a></li>
 				<li class="active">Kategori</li>
 			</ol>
 		</div>
@@ -171,7 +171,7 @@ $idk = $_GET['idkategori'];
 		<div class="container">
 			<div class="col-md-4 products-left">
 				<div class="categories">
-					<h2>Categories</h2>
+					<h2>Kategori</h2>
 					<ul class="cate">
 						
 						
@@ -205,7 +205,7 @@ $idk = $_GET['idkategori'];
 						<div class="hover14 column">
 							<div class="agile_top_brand_left_grid">
 								<div class="agile_top_brand_left_grid_pos">
-									<img src="images/offer.png" alt=" " class="img-responsive" />
+									<!-- <img src="images/offer.png" alt=" " class="img-responsive" /> -->
 								</div>
 								<div class="agile_top_brand_left_grid1">
 									<figure>

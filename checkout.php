@@ -15,7 +15,7 @@ if(!isset($_SESSION['log'])){
 	$itungtrans2 = mysqli_fetch_assoc($itungtrans);
 	$itungtrans3 = $itungtrans2['jumlahtrans'];
 	
-if(isset($_POST["checkout"])){
+if(isset($_POST["Bayar"])){
 	
 	$q3 = mysqli_query($conn, "update cart set status='Payment' where orderid='$orderidd'");
 	if($q3){
@@ -32,11 +32,11 @@ if(isset($_POST["checkout"])){
 <!DOCTYPE html>
 <html>
 <head>
-<title>Mr. Food - Checkout</title>
+<title>Mr. Food - Bayar</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Tokopekita, Richard's Lab" />
+<meta name="keywords" content="Mr. Food" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
@@ -146,7 +146,7 @@ if(isset($_POST["checkout"])){
 							</div> 
 							<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 								<ul class="nav navbar-nav">
-									<li class="active"><a href="index.php" class="act">Home</a></li>	
+									<li class="active"><a href="index.php" class="act">Beranda</a></li>	
 									<!-- Mega Menu -->
 									<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Kategori Produk<b class="caret"></b></a>
@@ -185,17 +185,17 @@ if(isset($_POST["checkout"])){
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1">
-				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Checkout</li>
+				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Beranda</a></li>
+				<li class="active">Bayar</li>
 			</ol>
 		</div>
 	</div>
 <!-- //breadcrumbs -->
-<!-- checkout -->
-	<div class="checkout">
+<!-- Bayar -->
+	<div class="Bayar">
 		<div class="container">
-			<h1>Terima kasih, <?=$_SESSION['name']?> telah membeli <?php echo $itungtrans3 ?> barang di Tokopekita</span></h1>
-			<div class="checkout-right">
+			<h1>Terima kasih, <?=$_SESSION['name']?> telah membeli <?php echo $itungtrans3 ?> barang di Mr. Food</span></h1>
+			<div class="Bayar-right">
 				<table class="timetable_sub">
 					<thead>
 						<tr>
@@ -266,8 +266,8 @@ if(isset($_POST["checkout"])){
 								<!--quantity-->
 				</table>
 			</div>
-			<div class="checkout-left">	
-				<div class="checkout-left-basket">
+			<div class="Bayar-left">	
+				<div class="Bayar-left-basket">
 					<h4>Total Harga yang harus dibayar saat ini</h4>
 					<ul>
 						<?php 
@@ -286,8 +286,8 @@ if(isset($_POST["checkout"])){
 					</ul>
 				</div>
 				<br>
-				<div class="checkout-left-basket" style="width:80%;margin-top:60px;">
-					<div class="checkout-left-basket">
+				<div class="Bayar-left-basket" style="width:80%;margin-top:60px;">
+					<div class="Bayar-left-basket">
 					<h4>Kode Order Anda</h4>
 					<h1><input type="text" value="<?php echo $orderidd ?>" disabled \></h1>
 				</div>
@@ -328,13 +328,13 @@ if(isset($_POST["checkout"])){
       
 		<br>
 		<form method="post">
-		<input type="submit" class="form-control btn btn-success" name="checkout" value="I Agree and Check Out" \>
+		<input type="submit" class="form-control btn btn-success" name="Bayar" value="Saya Setuju, Lanjutkan Pembayaran" \>
 		</form>
 	  
 	  </center>
 		</div>
 	</div>
-<!-- //checkout -->
+<!-- //Bayar -->
 <!-- //footer -->
 <div class="footer">
 		<div class="container">
@@ -343,7 +343,7 @@ if(isset($_POST["checkout"])){
 					<h3>Hubungi Kami</h3>
 					
 					<ul class="address">
-						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Richard's Lab, DKI Jakarta.</li>
+						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>, DKI Jakarta.</li>
 						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@email">info@email</a></li>
 						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+62 8113 2322</li>
 					</ul>
@@ -363,7 +363,7 @@ if(isset($_POST["checkout"])){
 		<div class="footer-copy">
 			
 			<div class="container">
-				<p>© 2020 Richard's Lab. All rights reserved</p>
+				<p>© 2020 Mr. Food All rights reserved</p>
 			</div>
 		</div>
 		

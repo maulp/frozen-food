@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 session_start();
 include 'dbconnect.php';
 
@@ -40,11 +41,11 @@ if(isset($_POST["update"])){
 <!DOCTYPE html>
 <html>
 <head>
-<title>Tokopekita - Daftar Belanja</title>
+<title>Mr.Food - Daftar Belanja</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Tokopekita, Richard's Lab" />
+<meta name="keywords" content="Mr.Food, Richard's Lab" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
@@ -123,7 +124,7 @@ if(isset($_POST["update"])){
 				</ul>
 			</div>
 			<div class="w3ls_logo_products_left">
-				<h1><a href="index.php">Tokopekita</a></h1>
+				<h1><a href="index.php">Mr.Food</a></h1>
 			</div>
 		<div class="w3l_search">
 			<form action="search.php" method="post">
@@ -154,7 +155,7 @@ if(isset($_POST["update"])){
 							</div> 
 							<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 								<ul class="nav navbar-nav">
-									<li class="active"><a href="index.php" class="act">Home</a></li>	
+									<li class="active"><a href="index.php" class="act">Beranda</a></li>	
 									<!-- Mega Menu -->
 									<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Kategori Produk<b class="caret"></b></a>
@@ -193,8 +194,8 @@ if(isset($_POST["update"])){
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1">
-				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Checkout</li>
+				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Beranda</a></li>
+				<li class="active">Bayar</li>
 			</ol>
 		</div>
 	</div>
@@ -208,8 +209,8 @@ if(isset($_POST["update"])){
 					<thead>
 						<tr>
 							<th>No.</th>	
-							<th>Kode Order</th>
-							<th>Tanggal Order</th>
+							<th>Kode Pesanan</th>
+							<th>Tanggal Pesanan</th>
 							<th>Total</th>
 							<th>Status</th>
 						</tr>
@@ -308,7 +309,7 @@ if(isset($_POST["update"])){
 					<h3>Hubungi Kami</h3>
 					
 					<ul class="address">
-						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Richard's Lab, DKI Jakarta.</li>
+						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Mr.Food, Malang</li>
 						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@email">info@email</a></li>
 						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+62 8113 2322</li>
 					</ul>

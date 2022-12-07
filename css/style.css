@@ -399,11 +399,11 @@ ul.multi-column-dropdown h6 {
     color: #fff;
     background: #3399cc;
     text-decoration: none;
-    position: relative;
+    position:relative;
     border: none;
     border-radius: 0;
     width: 100%;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     padding: .5em 0;
     outline: none;
 }
