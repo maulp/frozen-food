@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.4
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: May 13, 2020 at 10:21 AM
--- Server version: 10.3.22-MariaDB-log-cll-lve
--- PHP Version: 7.3.6
+-- Host: 127.0.0.1
+-- Generation Time: Dec 07, 2022 at 02:19 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `k0702714_tokopekita`
+-- Database: `tokopekita`
 --
 
 -- --------------------------------------------------------
@@ -42,8 +41,14 @@ CREATE TABLE `cart` (
 
 INSERT INTO `cart` (`idcart`, `orderid`, `userid`, `tglorder`, `status`) VALUES
 (10, '15wKVT0nej25Y', 2, '2020-03-16 12:10:42', 'Selesai'),
-(11, '15Swf8Ye0Fm.M', 2, '2020-03-16 12:17:34', 'Cart'),
-(12, '15PzF03ejd8W2', 1, '2020-05-13 02:40:48', 'Confirmed');
+(11, '15Swf8Ye0Fm.M', 2, '2020-03-16 12:17:34', 'Confirmed'),
+(12, '15PzF03ejd8W2', 1, '2020-05-13 02:40:48', 'Confirmed'),
+(13, '16siy42DYKeso', 2, '2022-11-21 02:48:32', 'Selesai'),
+(14, '16UEdjM.g4QCw', 2, '2022-12-05 01:44:01', 'Confirmed'),
+(15, '163maQ4T6z2nY', 2, '2022-12-07 07:00:32', 'Confirmed'),
+(16, '16KaIsh179Q0M', 2, '2022-12-07 07:03:32', 'Confirmed'),
+(17, '16fr8Dwf8DFQo', 2, '2022-12-07 07:37:45', 'Payment'),
+(18, '169D99jYkky4.', 2, '2022-12-07 07:44:38', 'Cart');
 
 -- --------------------------------------------------------
 
@@ -63,8 +68,13 @@ CREATE TABLE `detailorder` (
 --
 
 INSERT INTO `detailorder` (`detailid`, `orderid`, `idproduk`, `qty`) VALUES
-(13, '15wKVT0nej25Y', 1, 100),
-(14, '15PzF03ejd8W2', 2, 1);
+(16, '16siy42DYKeso', 6, 1),
+(18, '16UEdjM.g4QCw', 5, 3),
+(19, '16UEdjM.g4QCw', 10, 1),
+(20, '163maQ4T6z2nY', 5, 3),
+(21, '16KaIsh179Q0M', 10, 1),
+(22, '16fr8Dwf8DFQo', 6, 1),
+(23, '169D99jYkky4.', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -83,9 +93,9 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`idkategori`, `namakategori`, `tgldibuat`) VALUES
-(1, 'Bunga Tangkai', '2019-12-20 07:28:34'),
-(2, 'Bunga Papan', '2019-12-20 07:34:17'),
-(3, 'Bunga Hidup', '2020-03-16 12:15:40');
+(1, '1 - daging', '2022-11-14 02:04:44'),
+(2, '2 - sayur', '2022-11-14 02:04:44'),
+(3, '3 - frozen food', '2022-11-14 02:17:02');
 
 -- --------------------------------------------------------
 
@@ -108,7 +118,11 @@ CREATE TABLE `konfirmasi` (
 --
 
 INSERT INTO `konfirmasi` (`idkonfirmasi`, `orderid`, `userid`, `payment`, `namarekening`, `tglbayar`, `tglsubmit`) VALUES
-(1, '15PzF03ejd8W2', 1, 'Bank BCA', 'Admin', '2020-05-16', '2020-05-13 02:41:51');
+(1, '15PzF03ejd8W2', 1, 'Bank BCA', 'Admin', '2020-05-16', '2020-05-13 02:41:51'),
+(2, '15Swf8Ye0Fm.M', 2, 'DANA', 'adsfa', '2022-11-14', '2022-11-14 02:22:57'),
+(4, '16UEdjM.g4QCw', 2, 'Bank BCA', 'adfadf', '2023-01-06', '2022-12-05 01:59:21'),
+(5, '163maQ4T6z2nY', 2, 'Bank BCA', 'alex', '2022-12-21', '2022-12-07 07:08:10'),
+(6, '16KaIsh179Q0M', 2, 'Bank BCA', 'yoga', '2022-12-26', '2022-12-07 07:38:09');
 
 -- --------------------------------------------------------
 
@@ -134,7 +148,11 @@ CREATE TABLE `login` (
 
 INSERT INTO `login` (`userid`, `namalengkap`, `email`, `password`, `notelp`, `alamat`, `tgljoin`, `role`, `lastlogin`) VALUES
 (1, 'Admin', 'admin', '$2y$10$GJVGd4ji3QE8ikTBzNyA0uLQhiGd6MirZeSJV1O6nUpjSVp1eaKzS', '01234567890', 'Indonesia', '2020-03-16 11:31:17', 'Admin', NULL),
-(2, 'Guest', 'guest', '$2y$10$xXEMgj5pMT9EE0QAx3QW8uEn155Je.FHH5SuIATxVheOt0Z4rhK6K', '01234567890', 'Indonesia', '2020-03-16 11:30:40', 'Member', NULL);
+(2, 'Guest', 'guest', '$2y$10$xXEMgj5pMT9EE0QAx3QW8uEn155Je.FHH5SuIATxVheOt0Z4rhK6K', '01234567890', 'Indonesia', '2020-03-16 11:30:40', 'Member', NULL),
+(3, 'david', 'david@gmail.com', '$2y$10$SSq76CHg0HRlR3Tt7vWzPOLSTjlH2k6mWDLLNm2Pxu/4q7L4r0uW2', '091823781', 'malang', '2022-12-07 07:59:03', 'Member', NULL),
+(4, 'faishol', 'faishol@gmail.com', '$2y$10$hkpd07HvBop7GRvwOvQKHeV8VKPr0hSzsnVhU.ZSKSHuflvEBdDOq', '09810293', 'malang', '2022-12-07 07:59:34', 'Member', NULL),
+(5, 'yoga', 'yoga@gmail.com', '$2y$10$XRGdr4nb5hfmtlDvkw9U5.juLIzK3yql/CFk2UB4DZ9yfXRJKcjhu', '09821313123', 'malang', '2022-12-07 07:59:54', 'Member', NULL),
+(6, 'mika', 'mika@gmail.com', '$2y$10$pQQ/fGF7phnNIogWFPqTj.RmC/wYfcVdwWIkz917kh7n19bwpwwVu', '09218309', 'malang', '2022-12-07 08:00:11', 'Member', NULL);
 
 -- --------------------------------------------------------
 
@@ -182,9 +200,20 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`idproduk`, `idkategori`, `namaproduk`, `gambar`, `deskripsi`, `rate`, `hargabefore`, `hargaafter`, `tgldibuat`) VALUES
-(1, 1, 'Mawar Merah', 'produk/7443a12318c5f4f29059d243fd14f447.png', 'Setangkai mawar merah', 5, 23000, 19000, '2019-12-20 09:10:26'),
-(2, 1, 'Mawar Putih', 'produk/15kwuDMbYtraw.png', 'Setangkai mawar putih', 4, 24000, 19500, '2019-12-20 09:24:13'),
-(3, 3, 'Bunga Hidup', 'produk/15Ak7lFMfvuJc.jpg', 'Bunga Hidup', 5, 25000, 15000, '2020-03-16 12:16:53');
+(5, 1, 'sapi', 'produk/sapi.jpg', 'daging sapi', 5, 60000, 50000, '2022-11-14 03:19:22'),
+(6, 1, 'Kambing ', 'produk/kambing.jpeg', 'Daginng Kambing 500gr', 5, 70000, 55000, '2022-11-14 03:19:22'),
+(7, 1, 'Daging Ayam ', 'produk/ayam.png', 'Daging ayam 500gr', 4, 20000, 18000, '2022-11-14 03:19:22'),
+(8, 1, 'Ikan Salmon', 'produk/salmon.jpg', 'Ikan Salmon segar 1 kg', 5, 60000, 50000, '2022-11-14 03:19:22'),
+(9, 1, 'Ikan Tuna', 'produk/tuna.jpg', 'Ikan Tuna 500gr', 5, 65000, 60000, '2022-11-14 03:19:22'),
+(10, 2, 'Brokoli ', 'produk/brokoli.webp', 'Brokoli Segar', 3, 10000, 8000, '2022-11-14 03:19:22'),
+(11, 2, 'Wortel', 'produk/wortel.jpg', 'Wortel', 2, 7000, 5999, '2022-11-14 03:19:22'),
+(12, 2, 'Tomat', 'produk/tomat.jpg', 'Tomat Segar', 4, 5000, 4300, '2022-11-14 03:19:22'),
+(13, 2, 'Bayam', 'produk/bayam.jpeg', 'Bayam perikat ', 3, 4000, 3450, '2022-11-14 03:19:22'),
+(14, 2, 'Sawi', 'produk/sawi.jpg', 'Sawi ', 4, 6000, 5500, '2022-11-14 03:19:22'),
+(15, 3, 'Bakso', 'produk/bakso.jpeg', 'Bakso 500gr', 5, 16000, 15000, '2022-11-14 03:19:22'),
+(16, 3, 'Pempek', 'produk/mpek.jpg', 'Pempek tinggal masak ', 3, 12000, 11650, '2022-11-14 03:19:22'),
+(17, 3, 'Sosis', 'produk/sosis.jpg', 'Sosis SAPI halal 500gr', 5, 27000, 26000, '2022-11-14 03:19:22'),
+(18, 3, 'Bakso Aci', 'produk/baksoaci.jpg', 'Bakso Aci SEPESIAL', 3, 22000, 20000, '2022-11-14 03:19:22');
 
 --
 -- Indexes for dumped tables
@@ -246,13 +275,13 @@ ALTER TABLE `produk`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `idcart` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idcart` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `detailorder`
 --
 ALTER TABLE `detailorder`
-  MODIFY `detailid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `detailid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `kategori`
@@ -264,13 +293,13 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `konfirmasi`
 --
 ALTER TABLE `konfirmasi`
-  MODIFY `idkonfirmasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idkonfirmasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `pembayaran`
@@ -282,7 +311,7 @@ ALTER TABLE `pembayaran`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `idproduk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idproduk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
