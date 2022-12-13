@@ -281,8 +281,8 @@ if(isset($_POST["update"])){
 					</ul>
 				</div>
 				<div class="checkout-right-basket">
-					<a href="index.php"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Continue Shopping</a>
-					<a href="checkout.php"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>Checkout</a>
+					<a href="index.php"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Lanjutkan Belanja</a>
+					<a href="checkout.php"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>Bayar</a>
 				</div>
 				<div class="clearfix"> </div>
 			</div>
@@ -297,17 +297,17 @@ if(isset($_POST["update"])){
 					<h3>Hubungi Kami</h3>
 					
 					<ul class="address">
-						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Richard's Lab, DKI Jakarta.</li>
-						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@email">info@email</a></li>
-						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+62 8113 2322</li>
+						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Malang, Jawa Timur</li>
+						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@email">mrfood@email.com</a></li>
+						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+62 877 047 565 64</li>
 					</ul>
 				</div>
 				<div class="col-md-3 w3_footer_grid">
-					<h3>Tentang Kami</h3>
+					<h3>Informasi</h3>
 					<ul class="info"> 
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.html">About Us</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.html">How To</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.html">FAQ</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.html">Tentang Kami</a></li>
+						<!-- <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.html">How To</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.html">FAQ</a></li> -->
 					</ul>
 				</div>
 				<div class="clearfix"> </div>
@@ -317,7 +317,7 @@ if(isset($_POST["update"])){
 		<div class="footer-copy">
 			
 			<div class="container">
-				<p>© 2020 Richard's Lab. All rights reserved</p>
+				<p>Mr.Food All rights reserved</p>
 			</div>
 		</div>
 		

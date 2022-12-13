@@ -195,7 +195,7 @@
 										</tbody>
 										</table>
                                     </div>
-									<a href="datapesanan.php" target="_blank" class="btn btn-info">Export Data</a>
+									<!-- <a href="datapesanan.php" target="_blank" class="btn btn-info">Export Data</a> -->
                                 </div>
                             </div>
                         </div>
