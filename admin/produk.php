@@ -9,6 +9,7 @@
 		$rate=$_POST['rate'];
 		$hargabefore=$_POST['hargabefore'];
 		$hargaafter=$_POST['hargaafter'];
+		$stok = $_POST['jumlah'];
 		
 		$nama_file = $_FILES['uploadgambar']['name'];
 		$ext = pathinfo($nama_file, PATHINFO_EXTENSION);
@@ -24,8 +25,8 @@
 		  if($ukuran_file <= 5000000){ 
 			if(move_uploaded_file($tmp_file, $path)){ 
 			
-			  $query = "insert into produk (idkategori, namaproduk, gambar, deskripsi, rate, hargabefore, hargaafter)
-			  values('$idkategori','$namaproduk','$pathdb','$deskripsi','$rate','$hargabefore','$hargaafter')";
+			  $query = "insert into produk (idkategori, namaproduk, gambar, deskripsi, rate, hargabefore, hargaafter, stok)
+			  values('$idkategori','$namaproduk','$pathdb','$deskripsi','$rate','$hargabefore','$hargaafter', $stok)";
 			  $sql = mysqli_query($conn, $query); // Eksekusi/ Jalankan query dari variabel $query
 			  
 			  if($sql){ 
@@ -52,30 +53,19 @@
 		  echo "Sorry, the image format should be JPG/PNG.";
 		  echo "<br><meta http-equiv='refresh' content='5; URL=produk.php'> You will be redirected to the form in 5 seconds";
 		}
-	
-		if(isset($_POST["update"])){
-			$kode = $_POST['idproduknya'];
-			$jumlah = $_POST['jumlah'];
-			// $q1 = mysqli_query($conn, "update produk set qty='$jumlah' where idproduk='$kode' and orderid='$orderidd'");
-			$q1 = mysqli_query($conn, "update produk set qty='$jumlah' where idproduk='$kode'");
-			if($q1){
-				echo "Berhasil Update Stok
-				<meta http-equiv='refresh' content='1; url= produk.php'/>";
-			} else {
-				echo "Gagal update Stok
-				<meta http-equiv='refresh' content='1; url= produk.php'/>";
-			}
-		} else if(isset($_POST["hapus"])){
-			$kode = $_POST['idproduknya'];
-			// $q2 = mysqli_query($conn, "delete from produk where idproduk='$kode' and orderid='$orderidd'");
-			$q2 = mysqli_query($conn, "delete from produk where idproduk='$kode'");
-			if($q2){
-				echo "Berhasil Hapus";
-			} else {
-				echo "Gagal Hapus";
-			}
+	}
+	if(isset($_POST["ubah"])){
+		$kode = $_POST['idproduknya'];
+		$jumlah = $_POST['jumlah'];
+		$q1 = mysqli_query($conn, "update produk set stok='$jumlah' where idproduk='$kode'");
+		if($q1){
+			echo "Berhasil Update Cart
+			<meta http-equiv='refresh' content='1'; url= cart.php'/>";
+		} else {
+			echo "Gagal update cart
+			<meta http-equiv='refresh' content='1'; url= cart.php'/>";
 		}
-	};
+	}
 	?>
 
 <!doctype html>
@@ -218,7 +208,7 @@
 												<th>Gambar</th>
 												<th>Nama Produk</th>
 												<th>Kategori</th>
-												<th>Jumlah</th>
+												<th>Stok</th>
 												<th>Harga Diskon</th>
 												<th>Deskripsi</th>
 												<th>Rate</th>
@@ -229,7 +219,7 @@
 											<?php 
 											$brgs=mysqli_query($conn,"SELECT * from kategori k, produk p where k.idkategori=p.idkategori order by idproduk ASC");
 											$no=1;
-											while($p=mysqli_fetch_array($brgs)){
+											while($p=mysqli_fetch_assoc($brgs)){
 
 												?>
 												
@@ -240,10 +230,9 @@
 													<td><?php echo $p['namakategori'] ?></td>
 													<td><div class="quantity"> 
 															<div class="quantity-select">                     
-																<input type="number" name="jumlah" class="form-control" height="100px" value="<?php echo $p['qty'] ?>" \>
+																<input type="number" name="jumlah" class="form-control" height="100px" value="<?php echo $p['stok'] ?>" max="5"\>
 															</div>
 														</div>
-
 													</td>
 													<td><?php echo $p['hargaafter'] ?></td>
 													<td><?php echo $p['deskripsi'] ?></td>
@@ -253,9 +242,13 @@
 													<td class="invert">
 							<div class="rem">
 							
-								<input type="submit" name="update" class="form-control" value="Ubah" \>
+								<!-- <input type="submit" name="update" class="form-control" value="Ubah" \>
 								<input type="hidden" name="idproduknya" value="<?php echo $p['idproduk'] ?>" \>
-								<input type="submit" name="hapus" class="form-control" value="Hapus" \>
+								<input type="submit" name="hapus" class="form-control" value="Hapus" \> -->
+
+								<input type="submit" name="ubah" value="Ubah" class="btn btn-secondary col-md">
+								<input type="hidden" name="idproduknya" value="<?php echo $p['idproduk'] ?>" \>
+								<a href="hapus.php?id=<?php echo $p['idproduk']?>" class="btn btn-danger col-md">hapus</a>
 							</form>
 							</div>
 							<script>$(document).ready(function(c) {
@@ -271,6 +264,11 @@
 												<?php 
 											}
 											?>
+											<!--quantity-->
+									<script>
+									
+									</script>
+								<!--quantity-->
 										</tbody>
 										</table>
                                     </div>
@@ -343,6 +341,10 @@
 								<div class="form-group">
 									<label>Gambar</label>
 									<input name="uploadgambar" type="file" class="form-control">
+								</div>
+								<div class="form-group">
+									<label>Stok</label>
+									<input type="number" class="form-control" name="jumlah">
 								</div>
 
 							</div>
