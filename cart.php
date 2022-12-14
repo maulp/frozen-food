@@ -23,10 +23,10 @@ if(isset($_POST["update"])){
 	$q1 = mysqli_query($conn, "update detailorder set qty='$jumlah' where idproduk='$kode' and orderid='$orderidd'");
 	if($q1){
 		echo "Berhasil Update Cart
-		<meta http-equiv='refresh' content='1; url= cart.php'/>";
+		<meta http-equiv='refresh' content='1'; url= cart.php'/>";
 	} else {
 		echo "Gagal update cart
-		<meta http-equiv='refresh' content='1; url= cart.php'/>";
+		<meta http-equiv='refresh' content='1'; url= cart.php'/>";
 	}
 } else if(isset($_POST["hapus"])){
 	$kode = $_POST['idproduknya'];
@@ -229,6 +229,7 @@ if(isset($_POST["update"])){
 						<td class="invert"><?php echo $no++ ?></td>
 						<td class="invert"><a href="product.php?idproduk=<?php echo $b['idproduk'] ?>"><img src="<?php echo $b['gambar'] ?>" width="100px" height="100px" /></a></td>
 						<td class="invert"><?php echo $b['namaproduk'] ?></td>
+						
 						<td class="invert">
 							 <div class="quantity"> 
 								<div class="quantity-select">                     

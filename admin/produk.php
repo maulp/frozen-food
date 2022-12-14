@@ -53,6 +53,28 @@
 		  echo "<br><meta http-equiv='refresh' content='5; URL=produk.php'> You will be redirected to the form in 5 seconds";
 		}
 	
+		if(isset($_POST["update"])){
+			$kode = $_POST['idproduknya'];
+			$jumlah = $_POST['jumlah'];
+			// $q1 = mysqli_query($conn, "update produk set qty='$jumlah' where idproduk='$kode' and orderid='$orderidd'");
+			$q1 = mysqli_query($conn, "update produk set qty='$jumlah' where idproduk='$kode'");
+			if($q1){
+				echo "Berhasil Update Stok
+				<meta http-equiv='refresh' content='1; url= produk.php'/>";
+			} else {
+				echo "Gagal update Stok
+				<meta http-equiv='refresh' content='1; url= produk.php'/>";
+			}
+		} else if(isset($_POST["hapus"])){
+			$kode = $_POST['idproduknya'];
+			// $q2 = mysqli_query($conn, "delete from produk where idproduk='$kode' and orderid='$orderidd'");
+			$q2 = mysqli_query($conn, "delete from produk where idproduk='$kode'");
+			if($q2){
+				echo "Berhasil Hapus";
+			} else {
+				echo "Gagal Hapus";
+			}
+		}
 	};
 	?>
 
@@ -187,7 +209,7 @@
                             <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-center">
 									<h2>Daftar Produk</h2>
-									<!-- <button style="margin-bottom:20px" data-toggle="modal" data-target="#myModal" class="btn btn-info col-md-2">Tambah Produk</button> -->
+									<button style="margin-bottom:20px" data-toggle="modal" data-target="#myModal" class="btn btn-info col-md-2">Tambah Produk</button>
                                 </div>
                                     <div class="data-tables datatable-dark">
 										 <table id="dataTable3" class="display" style="width:100%"><thead class="thead-dark">
@@ -196,11 +218,13 @@
 												<th>Gambar</th>
 												<th>Nama Produk</th>
 												<th>Kategori</th>
+												<th>Jumlah</th>
 												<th>Harga Diskon</th>
 												<th>Deskripsi</th>
 												<th>Rate</th>
 												<th>Harga Awal</th>
 												<th>Tanggal</th>
+												<th>Edit</th>
 											</tr></thead><tbody>
 											<?php 
 											$brgs=mysqli_query($conn,"SELECT * from kategori k, produk p where k.idkategori=p.idkategori order by idproduk ASC");
@@ -211,23 +235,41 @@
 												
 												<tr>
 													<td><?php echo $no++ ?></td>
-													<td><img src="../<?php echo $p['gambar'] ?>" width="50%"\></td>
+													<td><img src="../<?php echo $p['gambar'] ?>" style="padding:5%"\></td>
 													<td><?php echo $p['namaproduk'] ?></td>
 													<td><?php echo $p['namakategori'] ?></td>
+													<td><div class="quantity"> 
+															<div class="quantity-select">                     
+																<input type="number" name="jumlah" class="form-control" height="100px" value="<?php echo $p['qty'] ?>" \>
+															</div>
+														</div>
+
+													</td>
 													<td><?php echo $p['hargaafter'] ?></td>
 													<td><?php echo $p['deskripsi'] ?></td>
 													<td><?php echo $p['rate'] ?></td>
 													<td><?php echo $p['hargabefore'] ?></td>
 													<td><?php echo $p['tgldibuat'] ?></td>
-													
+													<td class="invert">
+							<div class="rem">
+							
+								<input type="submit" name="update" class="form-control" value="Ubah" \>
+								<input type="hidden" name="idproduknya" value="<?php echo $p['idproduk'] ?>" \>
+								<input type="submit" name="hapus" class="form-control" value="Hapus" \>
+							</form>
+							</div>
+							<script>$(document).ready(function(c) {
+								$('.close1').on('click', function(c){
+									$('.rem1').fadeOut('slow', function(c){
+										$('.rem1').remove();
+									});
+									});	  
+								});
+						   </script>
+						</td>
 												</tr>		
-												
 												<?php 
 											}
-											
-												
-											
-		
 											?>
 										</tbody>
 										</table>
