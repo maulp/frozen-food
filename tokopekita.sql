@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2022 at 02:19 PM
+-- Generation Time: Dec 15, 2022 at 10:15 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.28
 
@@ -47,8 +47,11 @@ INSERT INTO `cart` (`idcart`, `orderid`, `userid`, `tglorder`, `status`) VALUES
 (14, '16UEdjM.g4QCw', 2, '2022-12-05 01:44:01', 'Confirmed'),
 (15, '163maQ4T6z2nY', 2, '2022-12-07 07:00:32', 'Confirmed'),
 (16, '16KaIsh179Q0M', 2, '2022-12-07 07:03:32', 'Confirmed'),
-(17, '16fr8Dwf8DFQo', 2, '2022-12-07 07:37:45', 'Payment'),
-(18, '169D99jYkky4.', 2, '2022-12-07 07:44:38', 'Cart');
+(17, '16fr8Dwf8DFQo', 2, '2022-12-07 07:37:45', 'Selesai'),
+(18, '169D99jYkky4.', 2, '2022-12-07 07:44:38', 'Payment'),
+(19, '16eV2lWsNC.UY', 5, '2022-12-14 07:15:26', 'Confirmed'),
+(20, '16sPSDz9Za32M', 2, '2022-12-14 07:42:20', 'Cart'),
+(21, '168wjSVV91UuI', 1, '2022-12-14 07:50:46', 'Cart');
 
 -- --------------------------------------------------------
 
@@ -74,7 +77,11 @@ INSERT INTO `detailorder` (`detailid`, `orderid`, `idproduk`, `qty`) VALUES
 (20, '163maQ4T6z2nY', 5, 3),
 (21, '16KaIsh179Q0M', 10, 1),
 (22, '16fr8Dwf8DFQo', 6, 1),
-(23, '169D99jYkky4.', 5, 1);
+(23, '169D99jYkky4.', 5, 1),
+(24, '169D99jYkky4.', 7, 2),
+(25, '16eV2lWsNC.UY', 5, 1),
+(26, '16sPSDz9Za32M', 5, 1),
+(27, '168wjSVV91UuI', 6, 1);
 
 -- --------------------------------------------------------
 
@@ -122,7 +129,8 @@ INSERT INTO `konfirmasi` (`idkonfirmasi`, `orderid`, `userid`, `payment`, `namar
 (2, '15Swf8Ye0Fm.M', 2, 'DANA', 'adsfa', '2022-11-14', '2022-11-14 02:22:57'),
 (4, '16UEdjM.g4QCw', 2, 'Bank BCA', 'adfadf', '2023-01-06', '2022-12-05 01:59:21'),
 (5, '163maQ4T6z2nY', 2, 'Bank BCA', 'alex', '2022-12-21', '2022-12-07 07:08:10'),
-(6, '16KaIsh179Q0M', 2, 'Bank BCA', 'yoga', '2022-12-26', '2022-12-07 07:38:09');
+(6, '16KaIsh179Q0M', 2, 'Bank BCA', 'yoga', '2022-12-26', '2022-12-07 07:38:09'),
+(7, '16eV2lWsNC.UY', 5, 'Bank BCA', 'yoga', '2022-12-14', '2022-12-14 07:16:46');
 
 -- --------------------------------------------------------
 
@@ -152,7 +160,8 @@ INSERT INTO `login` (`userid`, `namalengkap`, `email`, `password`, `notelp`, `al
 (3, 'david', 'david@gmail.com', '$2y$10$SSq76CHg0HRlR3Tt7vWzPOLSTjlH2k6mWDLLNm2Pxu/4q7L4r0uW2', '091823781', 'malang', '2022-12-07 07:59:03', 'Member', NULL),
 (4, 'faishol', 'faishol@gmail.com', '$2y$10$hkpd07HvBop7GRvwOvQKHeV8VKPr0hSzsnVhU.ZSKSHuflvEBdDOq', '09810293', 'malang', '2022-12-07 07:59:34', 'Member', NULL),
 (5, 'yoga', 'yoga@gmail.com', '$2y$10$XRGdr4nb5hfmtlDvkw9U5.juLIzK3yql/CFk2UB4DZ9yfXRJKcjhu', '09821313123', 'malang', '2022-12-07 07:59:54', 'Member', NULL),
-(6, 'mika', 'mika@gmail.com', '$2y$10$pQQ/fGF7phnNIogWFPqTj.RmC/wYfcVdwWIkz917kh7n19bwpwwVu', '09218309', 'malang', '2022-12-07 08:00:11', 'Member', NULL);
+(6, 'mika', 'mika@gmail.com', '$2y$10$pQQ/fGF7phnNIogWFPqTj.RmC/wYfcVdwWIkz917kh7n19bwpwwVu', '09218309', 'malang', '2022-12-07 08:00:11', 'Member', NULL),
+(7, 'yoga', 'yogsaa@gmail.com', '$2y$10$Ny5nfSo/ABEP2.IgCVvbrOvEjXeJTjPqR.Hn1RdL5AOhdirtoBqlG', '0849382', ',alang', '2022-12-14 07:13:47', 'Member', NULL);
 
 -- --------------------------------------------------------
 
@@ -192,28 +201,30 @@ CREATE TABLE `produk` (
   `rate` int(11) NOT NULL,
   `hargabefore` int(11) NOT NULL,
   `hargaafter` int(11) NOT NULL,
-  `tgldibuat` timestamp NOT NULL DEFAULT current_timestamp()
+  `tgldibuat` timestamp NOT NULL DEFAULT current_timestamp(),
+  `stok` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `produk`
 --
 
-INSERT INTO `produk` (`idproduk`, `idkategori`, `namaproduk`, `gambar`, `deskripsi`, `rate`, `hargabefore`, `hargaafter`, `tgldibuat`) VALUES
-(5, 1, 'sapi', 'produk/sapi.jpg', 'daging sapi', 5, 60000, 50000, '2022-11-14 03:19:22'),
-(6, 1, 'Kambing ', 'produk/kambing.jpeg', 'Daginng Kambing 500gr', 5, 70000, 55000, '2022-11-14 03:19:22'),
-(7, 1, 'Daging Ayam ', 'produk/ayam.png', 'Daging ayam 500gr', 4, 20000, 18000, '2022-11-14 03:19:22'),
-(8, 1, 'Ikan Salmon', 'produk/salmon.jpg', 'Ikan Salmon segar 1 kg', 5, 60000, 50000, '2022-11-14 03:19:22'),
-(9, 1, 'Ikan Tuna', 'produk/tuna.jpg', 'Ikan Tuna 500gr', 5, 65000, 60000, '2022-11-14 03:19:22'),
-(10, 2, 'Brokoli ', 'produk/brokoli.webp', 'Brokoli Segar', 3, 10000, 8000, '2022-11-14 03:19:22'),
-(11, 2, 'Wortel', 'produk/wortel.jpg', 'Wortel', 2, 7000, 5999, '2022-11-14 03:19:22'),
-(12, 2, 'Tomat', 'produk/tomat.jpg', 'Tomat Segar', 4, 5000, 4300, '2022-11-14 03:19:22'),
-(13, 2, 'Bayam', 'produk/bayam.jpeg', 'Bayam perikat ', 3, 4000, 3450, '2022-11-14 03:19:22'),
-(14, 2, 'Sawi', 'produk/sawi.jpg', 'Sawi ', 4, 6000, 5500, '2022-11-14 03:19:22'),
-(15, 3, 'Bakso', 'produk/bakso.jpeg', 'Bakso 500gr', 5, 16000, 15000, '2022-11-14 03:19:22'),
-(16, 3, 'Pempek', 'produk/mpek.jpg', 'Pempek tinggal masak ', 3, 12000, 11650, '2022-11-14 03:19:22'),
-(17, 3, 'Sosis', 'produk/sosis.jpg', 'Sosis SAPI halal 500gr', 5, 27000, 26000, '2022-11-14 03:19:22'),
-(18, 3, 'Bakso Aci', 'produk/baksoaci.jpg', 'Bakso Aci SEPESIAL', 3, 22000, 20000, '2022-11-14 03:19:22');
+INSERT INTO `produk` (`idproduk`, `idkategori`, `namaproduk`, `gambar`, `deskripsi`, `rate`, `hargabefore`, `hargaafter`, `tgldibuat`, `stok`) VALUES
+(5, 1, 'sapi', 'produk/sapi.jpg', 'daging sapi', 5, 60000, 50000, '2022-11-14 03:19:22', 4),
+(6, 1, 'Kambing ', 'produk/kambing.jpeg', 'Daginng Kambing 500gr', 5, 70000, 55000, '2022-11-14 03:19:22', 0),
+(7, 1, 'Daging Ayam ', 'produk/ayam.png', 'Daging ayam 500gr', 4, 20000, 18000, '2022-11-14 03:19:22', 0),
+(8, 1, 'Ikan Salmon', 'produk/salmon.jpg', 'Ikan Salmon segar 1 kg', 5, 60000, 50000, '2022-11-14 03:19:22', 0),
+(9, 1, 'Ikan Tuna', 'produk/tuna.jpg', 'Ikan Tuna 500gr', 5, 65000, 60000, '2022-11-14 03:19:22', 0),
+(10, 2, 'Brokoli ', 'produk/brokoli.webp', 'Brokoli Segar', 3, 10000, 8000, '2022-11-14 03:19:22', 0),
+(11, 2, 'Wortel', 'produk/wortel.jpg', 'Wortel', 2, 7000, 5999, '2022-11-14 03:19:22', 0),
+(12, 2, 'Tomat', 'produk/tomat.jpg', 'Tomat Segar', 4, 5000, 4300, '2022-11-14 03:19:22', 0),
+(13, 2, 'Bayam', 'produk/bayam.jpeg', 'Bayam perikat ', 3, 4000, 3450, '2022-11-14 03:19:22', 0),
+(14, 2, 'Sawi', 'produk/sawi.jpg', 'Sawi ', 4, 6000, 5500, '2022-11-14 03:19:22', 0),
+(15, 3, 'Bakso', 'produk/bakso.jpeg', 'Bakso 500gr', 5, 16000, 15000, '2022-11-14 03:19:22', 0),
+(16, 3, 'Pempek', 'produk/mpek.jpg', 'Pempek tinggal masak ', 3, 12000, 11650, '2022-11-14 03:19:22', 0),
+(17, 3, 'Sosis', 'produk/sosis.jpg', 'Sosis SAPI halal 500gr', 5, 27000, 26000, '2022-11-14 03:19:22', 0),
+(18, 3, 'Bakso Aci', 'produk/baksoaci.jpg', 'Bakso Aci SEPESIAL', 3, 22000, 20000, '2022-11-14 03:19:22', 0),
+(20, 1, 'hp xiaomi seken ', 'produk/16w0fZeK9oZFk.png', 'seken no minus, pemakaian tentara', 3, 8000000, 7500000, '2022-12-15 09:07:25', 2);
 
 --
 -- Indexes for dumped tables
@@ -275,13 +286,13 @@ ALTER TABLE `produk`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `idcart` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idcart` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `detailorder`
 --
 ALTER TABLE `detailorder`
-  MODIFY `detailid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `detailid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `kategori`
@@ -293,13 +304,13 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `konfirmasi`
 --
 ALTER TABLE `konfirmasi`
-  MODIFY `idkonfirmasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idkonfirmasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pembayaran`
@@ -311,7 +322,7 @@ ALTER TABLE `pembayaran`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `idproduk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idproduk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables
