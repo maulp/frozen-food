@@ -1,31 +1,39 @@
+<?php
+session_start();
+include '../dbconnect.php';
 
-<?php 
-	session_start();
-	include '../dbconnect.php';
-		
-	if(isset($_POST['addcategory']))
-	{
-		$namakategori = $_POST['namakategori'];
-			  
-		$tambahkat = mysqli_query($conn,"insert into kategori (namakategori) values ('$namakategori')");
-		if ($tambahkat){
-		echo "
-		<meta http-equiv='refresh' content='1; url= kategori.php'/>  ";
-		} else { echo "
-		 <meta http-equiv='refresh' content='1; url= kategori.php'/> ";
-		}
-		
-	};
-	?>
+if (isset($_POST['addcategory'])) {
+    $namakategori = $_POST['namakategori'];
+
+    $tambahkat = mysqli_query($conn, "insert into kategori (namakategori) values ('$namakategori')");
+    if ($tambahkat) {
+        echo "
+		<meta http-equiv='refresh' content='1'; url= kategori.php'/>  ";
+    } else {
+        echo "
+		 <meta http-equiv='refresh' content='1'; url= kategori.php'/> ";
+    }
+}
+if (isset($_POST['updatekategori'])) {
+    $idkategori = $_POST['idkategori'];
+    $namakategori = $_POST['namakategori'];
+    $query = "UPDATE kategori set namakategori = '$namakategori' where idkategori = $idkategori";
+    $result = mysqli_query($conn, $query);
+    if ($result) {
+        echo "<script>alert('Berhasil Memperbarui Kategori')</script>
+            <meta http-equiv='refresh' content='1'; url=kategori.php";
+    }
+}
+
+
+?>
 
 <!doctype html>
 <html class="no-js" lang="en">
 
 <head>
     <meta charset="utf-8">
-	<link rel="icon" 
-      type="image/png" 
-      href="../favicon.png">
+    <link rel="icon" type="image/png" href="../favicon.png">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Kelola Kategori - Tokopekita</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,17 +44,17 @@
     <link rel="stylesheet" href="assets/css/metisMenu.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="assets/css/slicknav.min.css">
-	
+
     <!-- amchart css -->
     <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
-	<!-- Start datatable css -->
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <!-- Start datatable css -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
-	
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
+
     <!-- others css -->
     <link rel="stylesheet" href="assets/css/typography.css">
     <link rel="stylesheet" href="assets/css/default-css.css">
@@ -73,27 +81,27 @@
                 <div class="menu-inner">
                     <nav>
                         <ul class="metismenu" id="menu">
-							<li><a href="index.php"><span>Beranda</span></a></li>
-							<li><a href="../"><span>Kembali ke Toko</span></a></li>
-							<li>
+                            <li><a href="index.php"><span>Beranda</span></a></li>
+                            <li><a href="../"><span>Kembali ke Toko</span></a></li>
+                            <li>
                                 <a href="manageorder.php"><i class="ti-dashboard"></i><span>Kelola Pesanan</span></a>
                             </li>
-							<li class="active">
+                            <li class="active">
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout"></i><span>Kelola Toko
                                     </span></a>
                                 <ul class="collapse">
                                     <li class="active"><a href="kategori.php">Kategori</a></li>
                                     <li><a href="produk.php">Produk</a></li>
-									<li><a href="pembayaran.php">Metode Pembayaran</a></li>
+                                    <li><a href="pembayaran.php">Metode Pembayaran</a></li>
                                 </ul>
                             </li>
-							<li><a href="customer.php"><span>Kelola Pelanggan</span></a></li>
-							<li><a href="user.php"><span>Kelola Staff</span></a></li>
+                            <li><a href="customer.php"><span>Kelola Pelanggan</span></a></li>
+                            <li><a href="user.php"><span>Kelola Staff</span></a></li>
                             <li>
                                 <a href="../logout.php"><span>Keluar</span></a>
-                                
+
                             </li>
-                            
+
                         </ul>
                     </nav>
                 </div>
@@ -116,142 +124,204 @@
                     <!-- profile info & task notification -->
                     <div class="col-md-6 col-sm-4 clearfix">
                         <ul class="notification-area pull-right">
-                            <li><h3><div class="date">
-								<script type='text/javascript'>
-						<!--
-						var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-						var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
-						var date = new Date();
-						var day = date.getDate();
-						var month = date.getMonth();
-						var thisDay = date.getDay(),
-							thisDay = myDays[thisDay];
-						var yy = date.getYear();
-						var year = (yy < 1000) ? yy + 1900 : yy;
-						document.write(thisDay + ', ' + day + ' ' + months[month] + ' ' + year);		
-						//-->
-						</script></b></div></h3>
+                            <li>
+                                <h3>
+                                    <div class="date">
+                                        <script type='text/javascript'>
+                                            var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                                            var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+                                            var date = new Date();
+                                            var day = date.getDate();
+                                            var month = date.getMonth();
+                                            var thisDay = date.getDay(),
+                                                thisDay = myDays[thisDay];
+                                            var yy = date.getYear();
+                                            var year = (yy < 1000) ? yy + 1900 : yy;
+                                            document.write(thisDay + ', ' + day + ' ' + months[month] + ' ' + year);
+                                            //-->
+                                        </script></b>
+                                    </div>
+                                </h3>
 
-						</li>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
-            
-            
+
+
             <!-- page title area end -->
             <div class="main-content-inner">
-               
+
                 <!-- market value area start -->
                 <div class="row mt-5 mb-5">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-center">
-									<h2>Daftar Kategori</h2>
-									<button style="margin-bottom:20px" data-toggle="modal" data-target="#myModal" class="btn btn-info col-md-2">Tambah Kategori</button>
+                                    <h2>Daftar Kategori</h2>
+                                    <button style="margin-bottom:20px" data-toggle="modal" data-target="#myModal" class="btn btn-primary col-md-2">Tambah Kategori</button>
                                 </div>
-                                    <div class="data-tables datatable-dark">
-										 <table id="dataTable3" class="display" style="width:100%"><thead class="thead-dark">
-											<tr>
-												<th>No.</th>
-												<th>Nama Kategori</th>
-												<th>Jumlah Produk</th>
-												<th>Tanggal Dibuat</th>
-                                                <!-- <th>Opsi</th> -->
-											</tr></thead><tbody>
-											<?php 
-											$brgs=mysqli_query($conn,"SELECT * from kategori order by idkategori ASC");
-											$no=1;
-											while($p=mysqli_fetch_array($brgs)){
-												$id = $p['idkategori'];
+                                <div class="data-tables datatable-dark">
+                                    <table id="dataTable3" class="display" style="width:100%">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>Nama Kategori</th>
+                                                <th>Jumlah Produk</th>
+                                                <th>Tanggal Dibuat</th>
+                                                <th>Ubah</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $brgs = mysqli_query($conn, "SELECT * from kategori order by idkategori ASC");
+                                            $no = 1;
+                                            while ($p = mysqli_fetch_array($brgs)) {
+                                                $id = $p['idkategori'];
 
-												?>
-												
-												<tr>
-													<td><?php echo $no++ ?></td>
-													<td><?php echo $p['namakategori'] ?></td>
-													<td><?php 
-												
-														$result1 = mysqli_query($conn,"SELECT Count(idproduk) AS count FROM produk p, kategori k where p.idkategori=k.idkategori and k.idkategori='$id' order by idproduk ASC");
-														$cekrow = mysqli_num_rows($result1);
-														$row1 = mysqli_fetch_assoc($result1);
-														$count = $row1['count'];
-														if($cekrow > 0){
-														echo number_format($count);
-														} else {
-															echo 'No data';
-														}
-													?></td>
-													<td><?php echo $p['tgldibuat'] ?></td>
-                                                    <!-- <td><a href="delete.php" class="btn btn-danger col-md-5">Delete</a></td> -->
-													
-												</tr>		
-												
-												<?php 
-											}
-											
-											?>
-										</tbody>
-										</table>
-                                    </div>
-								 </div>
+                                            ?>
+
+                                                <tr>
+                                                    <td><?php echo $no++ ?></td>
+                                                    <td><?php echo $p['namakategori'] ?></td>
+                                                    <td><?php
+
+                                                        $result1 = mysqli_query($conn, "SELECT Count(idproduk) AS count FROM produk p, kategori k where p.idkategori=k.idkategori and k.idkategori='$id' order by idproduk ASC");
+                                                        $cekrow = mysqli_num_rows($result1);
+                                                        $row1 = mysqli_fetch_assoc($result1);
+                                                        $count = $row1['count'];
+                                                        if ($cekrow > 0) {
+                                                            echo number_format($count);
+                                                        } else {
+                                                            echo 'No data';
+                                                        }
+                                                        ?></td>
+                                                    <td><?php echo $p['tgldibuat'] ?></td>
+                                                    <td>
+                                                        <a href="" class="btn btn-secondary mb-3 pl-3 pr-3" data-target="#kategoriupdate<?php echo $p['idkategori'] ?>" data-toggle="modal">Ubah</a>
+                                                        <!-- <a href="hapusKategori.php?id=<?php echo $p['idkategori'] ?>" class="btn btn-danger ml-2 mb-3 pl-3 pr-3">Hapus</a> -->
+                                                        <input type="submit" value="Hapus" data-toggle="modal" data-target="#modalhapus<?php echo $p['idkategori']?>" name="btnhapus" class="btn btn-danger ml-2 mb-3 pl-3 pr-3">
+                                                    </td>
+                                                </tr>
+
+                                            <?php
+                                            }
+
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-              
+            </div>
+            <?php
+            $query = "SELECT * FROM kategori";
+            $result = mysqli_query($conn, $query);
+            while ($row = mysqli_fetch_assoc($result)) {
+            ?>
+                <!-- modal update kategori -->
+                <div id="kategoriupdate<?php echo $row['idkategori'] ?>" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Ubah Kategori</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form action="" method="post">
+                                    <div class="form-group">
+                                        <label for="">Nama Kategori</label>
+                                        <input type="hidden" name="idkategori" value="<?php echo $row['idkategori'] ?>">
+                                        <input type="text" name="namakategori" id="" class="form-control" value="<?php echo $row['namakategori'] ?>" required autofocus>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-default" data-dismiss="modal">Batal</button>
+                                        <input type="submit" value="Ubah Kategori" name="updatekategori" class="btn btn-success">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 
-                <!-- row area start-->
-            </div>
+
+                <!-- Modal Hapus -->
+                <div class="modal fade" id="modalhapus<?php echo $row['idkategori']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Hapus</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Apakah anda yakin ingin menghapus kategori ini?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                                <a href="hapusKategori.php?id=<?php echo $row['idkategori']?>" class="btn btn-danger">Iya</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php
+
+            } ?>
+            <!-- modal update kategori -->
+            <!-- row area start-->
         </div>
-        <!-- main content area end -->
-        <!-- footer area start-->
-        <footer>
-            <div class="footer-area">
-                <p>Mr.Food</p>
-            </div>
-        </footer>
-        <!-- footer area end-->
+    </div>
+    <!-- main content area end -->
+    <!-- footer area start-->
+    <footer>
+        <div class="footer-area">
+            <p>Mr.Food</p>
+        </div>
+    </footer>
+    <!-- footer area end-->
     </div>
     <!-- page container area end -->
-	
-	<!-- modal input -->
-			<div id="myModal" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title">Tambah Kategori</h4>
-						</div>
-						<div class="modal-body">
-							<form method="post">
-								<div class="form-group">
-									<label>Nama Kategori</label>
-									<input name="namakategori" type="text" class="form-control" required autofocus>
-								</div>
 
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-								<input name="addcategory" type="submit" class="btn btn-primary" value="Tambah">
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-	
-	<script>
-	$(document).ready(function() {
-    $('#dataTable3').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'print'
-        ]
-    } );
-	} );
-	</script>
-	
-	<!-- jquery latest version -->
+    <!-- modal input -->
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Tambah Kategori</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="post">
+                        <div class="form-group">
+                            <label>Nama Kategori</label>
+                            <input name="namakategori" type="text" class="form-control" required autofocus>
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <input name="addcategory" type="submit" class="btn btn-primary" value="Tambah">
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#dataTable3').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'print'
+                ]
+            });
+        });
+    </script>
+
+    <!-- jquery latest version -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <!-- bootstrap 4 js -->
     <script src="assets/js/popper.min.js"></script>
@@ -260,15 +330,15 @@
     <script src="assets/js/metisMenu.min.js"></script>
     <script src="assets/js/jquery.slimscroll.min.js"></script>
     <script src="assets/js/jquery.slicknav.min.js"></script>
-		<!-- Start datatable js -->
-	 <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+    <!-- Start datatable js -->
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
-	<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
     <!-- start chart js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
     <!-- start highcharts js -->
@@ -276,8 +346,8 @@
     <!-- start zingchart js -->
     <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
     <script>
-    zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
-    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
+        zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
+        ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
     </script>
     <!-- all line chart activation -->
     <script src="assets/js/line-chart.js"></script>
@@ -286,6 +356,7 @@
     <!-- others plugins -->
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/scripts.js"></script>
-	
+
 </body>
+
 </html>

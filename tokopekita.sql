@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2022 at 10:15 AM
+-- Generation Time: Dec 19, 2022 at 05:02 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.28
 
@@ -51,7 +51,7 @@ INSERT INTO `cart` (`idcart`, `orderid`, `userid`, `tglorder`, `status`) VALUES
 (18, '169D99jYkky4.', 2, '2022-12-07 07:44:38', 'Payment'),
 (19, '16eV2lWsNC.UY', 5, '2022-12-14 07:15:26', 'Confirmed'),
 (20, '16sPSDz9Za32M', 2, '2022-12-14 07:42:20', 'Cart'),
-(21, '168wjSVV91UuI', 1, '2022-12-14 07:50:46', 'Cart');
+(21, '168wjSVV91UuI', 1, '2022-12-14 07:50:46', 'Confirmed');
 
 -- --------------------------------------------------------
 
@@ -80,8 +80,9 @@ INSERT INTO `detailorder` (`detailid`, `orderid`, `idproduk`, `qty`) VALUES
 (23, '169D99jYkky4.', 5, 1),
 (24, '169D99jYkky4.', 7, 2),
 (25, '16eV2lWsNC.UY', 5, 1),
-(26, '16sPSDz9Za32M', 5, 1),
-(27, '168wjSVV91UuI', 6, 1);
+(26, '16sPSDz9Za32M', 5, 19),
+(27, '168wjSVV91UuI', 6, 1),
+(29, '168wjSVV91UuI', 11, 1);
 
 -- --------------------------------------------------------
 
@@ -102,7 +103,8 @@ CREATE TABLE `kategori` (
 INSERT INTO `kategori` (`idkategori`, `namakategori`, `tgldibuat`) VALUES
 (1, '1 - daging', '2022-11-14 02:04:44'),
 (2, '2 - sayur', '2022-11-14 02:04:44'),
-(3, '3 - frozen food', '2022-11-14 02:17:02');
+(3, '3 - frozen food', '2022-11-14 02:17:02'),
+(4, '4  - kue', '2022-12-19 01:13:50');
 
 -- --------------------------------------------------------
 
@@ -130,7 +132,8 @@ INSERT INTO `konfirmasi` (`idkonfirmasi`, `orderid`, `userid`, `payment`, `namar
 (4, '16UEdjM.g4QCw', 2, 'Bank BCA', 'adfadf', '2023-01-06', '2022-12-05 01:59:21'),
 (5, '163maQ4T6z2nY', 2, 'Bank BCA', 'alex', '2022-12-21', '2022-12-07 07:08:10'),
 (6, '16KaIsh179Q0M', 2, 'Bank BCA', 'yoga', '2022-12-26', '2022-12-07 07:38:09'),
-(7, '16eV2lWsNC.UY', 5, 'Bank BCA', 'yoga', '2022-12-14', '2022-12-14 07:16:46');
+(7, '16eV2lWsNC.UY', 5, 'Bank BCA', 'yoga', '2022-12-14', '2022-12-14 07:16:46'),
+(8, '168wjSVV91UuI', 1, 'Bank Mandi', 'admin', '2022-12-15', '2022-12-19 14:15:35');
 
 -- --------------------------------------------------------
 
@@ -182,9 +185,9 @@ CREATE TABLE `pembayaran` (
 --
 
 INSERT INTO `pembayaran` (`no`, `metode`, `norek`, `logo`, `an`) VALUES
-(1, 'Bank BCA', '13131231231', 'images/bca.jpg', 'Tokopekita'),
-(2, 'Bank Mandiri', '943248844843', 'images/mandiri.jpg', 'Tokopekita'),
-(3, 'DANA', '0882313132123', 'images/dana.png', 'Tokopekita');
+(1, 'Bank BCA', '13131231231', 'images/bca.jpg', 'Mr. Food'),
+(2, 'Bank Mandiri', '943248844843', 'images/mandiri.jpg', 'Mr. Food'),
+(3, 'DANA', '087704756564', 'images/dana.png', 'Mr. Food');
 
 -- --------------------------------------------------------
 
@@ -210,21 +213,21 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`idproduk`, `idkategori`, `namaproduk`, `gambar`, `deskripsi`, `rate`, `hargabefore`, `hargaafter`, `tgldibuat`, `stok`) VALUES
-(5, 1, 'sapi', 'produk/sapi.jpg', 'daging sapi', 5, 60000, 50000, '2022-11-14 03:19:22', 4),
-(6, 1, 'Kambing ', 'produk/kambing.jpeg', 'Daginng Kambing 500gr', 5, 70000, 55000, '2022-11-14 03:19:22', 0),
-(7, 1, 'Daging Ayam ', 'produk/ayam.png', 'Daging ayam 500gr', 4, 20000, 18000, '2022-11-14 03:19:22', 0),
-(8, 1, 'Ikan Salmon', 'produk/salmon.jpg', 'Ikan Salmon segar 1 kg', 5, 60000, 50000, '2022-11-14 03:19:22', 0),
-(9, 1, 'Ikan Tuna', 'produk/tuna.jpg', 'Ikan Tuna 500gr', 5, 65000, 60000, '2022-11-14 03:19:22', 0),
-(10, 2, 'Brokoli ', 'produk/brokoli.webp', 'Brokoli Segar', 3, 10000, 8000, '2022-11-14 03:19:22', 0),
-(11, 2, 'Wortel', 'produk/wortel.jpg', 'Wortel', 2, 7000, 5999, '2022-11-14 03:19:22', 0),
+(5, 1, 'INI DAGING SAPI', 'produk/16nl08fYu96V6.jpg', 'daging sapi', 5, 60000, 50000, '2022-11-14 03:19:22', 9),
+(6, 1, 'Kambing ', 'produk/16kQw0SdWtTE6.jpg', 'Daginng Kambing 500gr', 5, 70000, 55000, '2022-11-14 03:19:22', 5),
+(7, 1, 'Daging Ayam ', 'produk/ayam.png', 'Daging ayam 500gr', 4, 20000, 18000, '2022-11-14 03:19:22', 5),
+(8, 1, 'Ikan Salmon', 'produk/salmon.jpg', 'Ikan Salmon segar 1 kg', 5, 60000, 50000, '2022-11-14 03:19:22', 9),
+(9, 1, 'Ikan Tuna', 'produk/tuna.jpg', 'Ikan Tuna 500gr', 5, 65000, 60000, '2022-11-14 03:19:22', 10),
+(10, 2, 'Brokoli ', 'produk/brokoli.webp', 'Brokoli Segar', 3, 10000, 8000, '2022-11-14 03:19:22', 12),
+(11, 2, 'Wortel', 'produk/wortel.jpg', 'Wortel', 2, 7000, 5999, '2022-11-14 03:19:22', 2),
 (12, 2, 'Tomat', 'produk/tomat.jpg', 'Tomat Segar', 4, 5000, 4300, '2022-11-14 03:19:22', 0),
-(13, 2, 'Bayam', 'produk/bayam.jpeg', 'Bayam perikat ', 3, 4000, 3450, '2022-11-14 03:19:22', 0),
+(13, 2, 'Bayam', 'produk/bayam.jpeg', 'Bayam perikat ', 3, 4000, 3450, '2022-11-14 03:19:22', 5),
 (14, 2, 'Sawi', 'produk/sawi.jpg', 'Sawi ', 4, 6000, 5500, '2022-11-14 03:19:22', 0),
 (15, 3, 'Bakso', 'produk/bakso.jpeg', 'Bakso 500gr', 5, 16000, 15000, '2022-11-14 03:19:22', 0),
 (16, 3, 'Pempek', 'produk/mpek.jpg', 'Pempek tinggal masak ', 3, 12000, 11650, '2022-11-14 03:19:22', 0),
 (17, 3, 'Sosis', 'produk/sosis.jpg', 'Sosis SAPI halal 500gr', 5, 27000, 26000, '2022-11-14 03:19:22', 0),
 (18, 3, 'Bakso Aci', 'produk/baksoaci.jpg', 'Bakso Aci SEPESIAL', 3, 22000, 20000, '2022-11-14 03:19:22', 0),
-(20, 1, 'hp xiaomi seken ', 'produk/16w0fZeK9oZFk.png', 'seken no minus, pemakaian tentara', 3, 8000000, 7500000, '2022-12-15 09:07:25', 2);
+(22, 4, 'kue ', 'produk/16jTXsHGF9h6I.jpg', 'kue enak', 4, 150000, 129000, '2022-12-19 07:28:04', 5);
 
 --
 -- Indexes for dumped tables
@@ -292,19 +295,19 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT for table `detailorder`
 --
 ALTER TABLE `detailorder`
-  MODIFY `detailid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `detailid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `idkategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idkategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `konfirmasi`
 --
 ALTER TABLE `konfirmasi`
-  MODIFY `idkonfirmasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idkonfirmasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `login`
@@ -322,7 +325,7 @@ ALTER TABLE `pembayaran`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `idproduk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idproduk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Constraints for dumped tables

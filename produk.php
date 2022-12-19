@@ -31,8 +31,7 @@
 			  
 			  if($sql){ 
 				
-				echo "<script>alert('Berhasil Menambah Produk')</script>
-				<br><meta http-equiv='refresh' content='5; URL=produk.php'> You will be redirected to the form in 5 seconds";
+				echo "<br><meta http-equiv='refresh' content='5; URL=produk.php'> You will be redirected to the form in 5 seconds";
 					
 			  }else{
 				// Jika Gagal, Lakukan :
@@ -55,69 +54,18 @@
 		  echo "<br><meta http-equiv='refresh' content='5; URL=produk.php'> You will be redirected to the form in 5 seconds";
 		}
 	}
-
-	if(isset($_POST["updateproduct"])) {
-		$namaproduk=$_POST['namaproduk'];
-		$idkategori=$_POST['idkategori'];
-		$deskripsi=$_POST['deskripsi'];
-		$rate=$_POST['rate'];
-		$hargabefore=$_POST['hargabefore'];
-		$hargaafter=$_POST['hargaafter'];
-		$stok = $_POST['jumlah'];
-		$kode = $_POST['produkid'];
-		
-		$nama_file = $_FILES['uploadgambar']['name'];
-		$ext = pathinfo($nama_file, PATHINFO_EXTENSION);
-		$random = crypt($nama_file, time());
-		$ukuran_file = $_FILES['uploadgambar']['size'];
-		$tipe_file = $_FILES['uploadgambar']['type'];
-		$tmp_file = $_FILES['uploadgambar']['tmp_name'];
-		$path = "../produk/".$random.'.'.$ext;
-		$pathdb = "produk/".$random.'.'.$ext;
-
-		if($tipe_file == "image/jpeg" || $tipe_file == "image/png" || $tipe_file === "image/jpg"){
-		  if($ukuran_file <= 5000000){ 
-			if(move_uploaded_file($tmp_file, $path)){ 
-			
-			  $query = "UPDATE produk set idkategori='$idkategori', namaproduk='$namaproduk', gambar='$pathdb', deskripsi='$deskripsi', rate='$rate', hargabefore='$hargabefore', hargaafter='$hargaafter', stok='$stok' where idproduk = $kode";
-			  $sql = mysqli_query($conn, $query); // Eksekusi/ Jalankan query dari variabel $query
-			  
-			  if($sql){ 
-				
-				echo "<br><meta http-equiv='refresh' content='3'; URL=produk.php'> You will be redirected to the form in 3 seconds";
-					
-			  }else{
-				// Jika Gagal, Lakukan :
-				echo "Terjadi masalah saat mengupload gambar";
-				echo "<br><meta http-equiv='refresh' content='5; URL=produk.php'> You will be redirected to the form in 5 seconds";
-			  }
-			}else{
-			  // Jika gambar gagal diupload, Lakukan :
-			  echo "Terjadi masalah saat mengupload gambar";
-			  echo "<br><meta http-equiv='refresh' content='5; URL=produk.php'> You will be redirected to the form in 5 seconds";
-			}
-		  }else{
-			// Jika ukuran file lebih dari 1MB, lakukan :
-			echo "Ukuran gambar tidak boleh lebih dari 1mb";
-			echo "<br><meta http-equiv='refresh' content='5; URL=produk.php'> You will be redirected to the form in 5 seconds";
-		  }
-		}else{
-		  // Jika tipe file yang diupload bukan JPG / JPEG / PNG, lakukan :
-		  echo "Sorry, the image format should be JPG/PNG.";
-		  echo "<br><meta http-equiv='refresh' content='5; URL=produk.php'> You will be redirected to the form in 5 seconds";
+	if(isset($_POST["ubah"])){
+		$kode = $_POST['idproduknya'];
+		$jumlah = $_POST['jumlah'];
+		$q1 = mysqli_query($conn, "update produk set stok='$jumlah' where idproduk='$kode'");
+		if($q1){
+			echo "Berhasil Update Cart
+			<meta http-equiv='refresh' content='1'; url= cart.php'/>";
+		} else {
+			echo "Gagal update cart
+			<meta http-equiv='refresh' content='1'; url= cart.php'/>";
 		}
 	}
-	if(isset($_POST['updatestok'])){
-		$stok = $_POST['jumlah'];
-		$kode = $_POST['produkid'];
-		$query = "UPDATE produk set stok = $stok where idproduk = $kode";
-		$sql = mysqli_query($conn, $query);
-		if($sql){
-			echo "<script>alert('Sukses Memperbarui Stok')</script>";
-		}else{
-			echo "<script>alert('Gagal Memperbarui Stok')</script>";
-		}
-	}	
 	?>
 
 <!doctype html>
@@ -156,8 +104,6 @@
     <link rel="stylesheet" href="assets/css/responsive.css">
     <!-- modernizr css -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
-
-	
 </head>
 
 <body>
@@ -222,7 +168,7 @@
                         <ul class="notification-area pull-right">
                             <li><h3><div class="date">
 								<script type='text/javascript'>
-
+						<!--
 						var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 						var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
 						var date = new Date();
@@ -253,7 +199,7 @@
                             <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-center">
 									<h2>Daftar Produk</h2>
-									<button style="margin-bottom:20px" data-toggle="modal" data-target="#myModal" class="btn btn-primary col-md-2">Tambah Produk</button>
+									<button style="margin-bottom:20px" data-toggle="modal" data-target="#myModal" class="btn btn-info col-md-2">Tambah Produk</button>
                                 </div>
                                     <div class="data-tables datatable-dark">
 										 <table id="dataTable3" class="display" style="width:100%"><thead class="thead-dark">
@@ -268,7 +214,7 @@
 												<th>Rate</th>
 												<th>Harga Awal</th>
 												<th>Tanggal</th>
-												<th>Ubah</th>
+												<th>Edit</th>
 											</tr></thead><tbody>
 											<?php 
 											$brgs=mysqli_query($conn,"SELECT * from kategori k, produk p where k.idkategori=p.idkategori order by idproduk ASC");
@@ -277,14 +223,16 @@
 
 												?>
 												
-												<tr><form action="" method="post"></form>
+												<tr>
 													<td><?php echo $no++ ?></td>
 													<td><img src="../<?php echo $p['gambar'] ?>" style="padding:5%"\></td>
 													<td><?php echo $p['namaproduk'] ?></td>
 													<td><?php echo $p['namakategori'] ?></td>
-													<td>
-														<input type="text" name="jumlah" class="form-control mb-3" height="100px" value="<?php echo $p['stok'] ?>" disabled>
-														<input type="submit" value="ubah" class="btn btn-secondary col-md p-2" name="ubahStok" data-toggle="modal" data-target="#myModal3<?php echo $p['idproduk']?>">
+													<td><div class="quantity"> 
+															<div class="quantity-select">                     
+																<input type="number" name="jumlah" class="form-control" height="100px" value="<?php echo $p['stok'] ?>" max="5"\>
+															</div>
+														</div>
 													</td>
 													<td><?php echo $p['hargaafter'] ?></td>
 													<td><?php echo $p['deskripsi'] ?></td>
@@ -298,18 +246,29 @@
 								<input type="hidden" name="idproduknya" value="<?php echo $p['idproduk'] ?>" \>
 								<input type="submit" name="hapus" class="form-control" value="Hapus" \> -->
 
-								<input type="submit" name="update" class="btn btn-secondary col-md mb-3" value="Ubah" data-toggle="modal" data-target="#myModal2<?php echo $p['idproduk']?>">
+								<input type="submit" name="ubah" value="Ubah" class="btn btn-secondary col-md">
 								<input type="hidden" name="idproduknya" value="<?php echo $p['idproduk'] ?>" \>
-								<input type="submit" value="Hapus" class="btn btn-danger col-md mb-3" data-toggle="modal" data-target="#hapusproduk<?php echo $p['idproduk']?>">
-								<!-- <a href="hapusProduk.php?id=<?php echo $p['idproduk']?>" class="btn btn-danger col-md">hapus</a> -->
-
+								<a href="hapus.php?id=<?php echo $p['idproduk']?>" class="btn btn-danger col-md">hapus</a>
 							</form>
 							</div>
+							<script>$(document).ready(function(c) {
+								$('.close1').on('click', function(c){
+									$('.rem1').fadeOut('slow', function(c){
+										$('.rem1').remove();
+									});
+									});	  
+								});
+						   </script>
 						</td>
 												</tr>		
 												<?php 
 											}
 											?>
+											<!--quantity-->
+									<script>
+									
+									</script>
+								<!--quantity-->
 										</tbody>
 										</table>
                                     </div>
@@ -334,7 +293,7 @@
     </div>
     <!-- page container area end -->
 	
-	<!-- modal tambah -->
+	<!-- modal input -->
 			<div id="myModal" class="modal fade">
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -353,7 +312,7 @@
 									<select name="idkategori" class="form-control">
 									<option selected>Pilih Kategori</option>
 									<?php
-									$det=mysqli_query($conn,"select * from kategori order by namakategori ASC")or die(mysqli_error($conn));
+									$det=mysqli_query($conn,"select * from kategori order by namakategori ASC")or die(mysqli_error());
 									while($d=mysqli_fetch_array($det)){
 									?>
 										<option value="<?php echo $d['idkategori'] ?>"><?php echo $d['namakategori'] ?></option>
@@ -397,137 +356,7 @@
 					</div>
 				</div>
 			</div>
-
-			<!-- modal update -->
-			<?php 
-			$barang=mysqli_query($conn,"SELECT * from kategori k, produk p where k.idkategori=p.idkategori order by idproduk ASC");
-			while($r = mysqli_fetch_assoc($barang)){
-			 ?>
-
-
-			<div id="myModal2<?php echo $r['idproduk']?>" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title">Perbarui Produk</h4>
-						</div>
-						
-						<div class="modal-body">
-						<form action="" method="post" enctype="multipart/form-data" >
-								<div class="form-group">
-									<label>Nama Produk</label>
-									<input type="hidden" name="produkid" value="<?php echo $r['idproduk']?>">
-									<input name="namaproduk" type="text" class="form-control" required autofocus value="<?php echo $r['namaproduk']?>"> 
-								</div>
-								<div class="form-group">
-									<label>Nama Kategori</label>
-									<select name="idkategori" class="form-control">
-									<option selected><?php echo $r['namakategori']?></option>
-									<?php
-									$det=mysqli_query($conn,"select * from kategori order by namakategori ASC")or die(mysqli_error($conn));
-									while($d=mysqli_fetch_array($det)){
-									?>
-										<option value="<?php echo $d['idkategori'] ?>"><?php echo $d['namakategori'] ?></option>
-										<?php
-								}
-								?>		
-									</select>
-									
-								</div>
-								<div class="form-group">
-									<label>Deskripsi</label>
-									<input name="deskripsi" type="text" class="form-control" required value="<?php echo $r['deskripsi']?>">
-								</div>
-								<div class="form-group">
-									<label>Rating (1-5)</label>
-									<input name="rate" type="number" class="form-control"  min="1" max="5" required value="<?php echo $r['rate']?>">
-								</div>
-								<div class="form-group">
-									<label>Harga Sebelum Diskon</label>
-									<input name="hargabefore" type="number" class="form-control" value="<?php echo $r['hargabefore']?>">
-								</div>
-								<div class="form-group">
-									<label>Harga Setelah Diskon</label>
-									<input name="hargaafter" type="number" class="form-control" value="<?php echo $r['hargaafter']?>">
-								</div>
-								<div class="form-group">
-									<label>Gambar</label>
-									<br>
-									<img src="../<?php echo $r['gambar']?>" alt="" width="100" height="90">
-									<input name="uploadgambar" type="file" class="form-control" value="<?php echo $r['gambar']?>">
-								</div>
-								<div class="form-group">
-									<label>Stok</label>
-									<input type="number" class="form-control" name="jumlah" value="<?php echo $r['stok']?>">
-								</div>
-
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-								<input name="updateproduct" type="submit" class="btn btn-success" value="Perbarui">
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-			<!-- modal update -->
-
-			<!-- modal update stok -->
-			<div id="myModal3<?php echo $r['idproduk']?>" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title">Ubah Stok</h4>
-						</div>
-						
-						<div class="modal-body">
-						<form action="" method="post" enctype="multipart/form-data" >
-								<div class="form-group">
-									<label>Nama Produk</label>
-									<input type="hidden" name="produkid" value="<?php echo $r['idproduk']?>">
-									<input name="namaproduk" type="text" class="form-control" value="<?php echo $r['namaproduk']?>" disabled> 
-								</div>
-								<div class="form-group">
-									<label>Stok</label>
-									<input type="number" class="form-control" name="jumlah" value="<?php echo $r['stok']?>" autofo>
-								</div>
-
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-								<input name="updatestok" type="submit" class="btn btn-success" value="Perbarui Stok">
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-			<!-- akhir modal update stok -->
-
-			<!-- modal hapus produk -->
-
-			<div class="modal fade" id="hapusproduk<?php echo $r['idproduk']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">Hapus</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                Apakah anda yakin ingin menghapus kategori ini?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                                <a href="hapusProduk.php?id=<?php echo $r['idproduk']?>" class="btn btn-danger">Iya</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-			<!-- modal hapus produk -->
-
-			<?php }?>
-			
+	
 	<script>
 	$(document).ready(function() {
     $('#dataTable3').DataTable( {
@@ -539,7 +368,6 @@
 	} );
 	</script>
 	
-
 	<!-- jquery latest version -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <!-- bootstrap 4 js -->
